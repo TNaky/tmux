@@ -3,6 +3,6 @@
 tmux conf files
 
 ```
-git clone git@github.com:TNaky/tmux.git $HOME/.tmux
+git clone https://github.com/TNaky/tmux.git
 cp $HOME/.tmux/.tmux.conf $HOME/
 ```
