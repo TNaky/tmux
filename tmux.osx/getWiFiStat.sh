@@ -9,8 +9,25 @@ if [ ${ssid} = '' ]; then
 elif [ ${stat} != 'running' ]; then
   echo 'Wi-Fi off'
 else
-  levels=(▁ ▃ ▅ ▇ )
   sigLev=''
+
+  # if [ $rssi -ge -80 ]; then
+  #   sigLev='▉'
+  # elif [ $rssi -ge -82 ]; then
+  #   sigLev='▇'
+  # elif [ $rssi -ge -84 ]; then
+  #   sigLev='▆'
+  # elif [ $rssi -ge -86 ]; then
+  #   sigLev='▅'
+  # elif [ $rssi -ge -88 ]; then
+  #   sigLev='▃'
+  # elif [ $rssi -ge -90 ]; then
+  #   sigLev='▂'
+  # elif [ $rssi -ge -92 ]; then
+  #   sigLev='▁'
+  # fi
+
+  levels=(▁ ▃ ▅ ▇)
   for i in {0..4}; do
     case "${i}" in
       0 )
@@ -44,7 +61,7 @@ else
     esac
   done
 
-  sigLev="(${sigLev})"
+  sigLev="[${sigLev}]"
 
   colour="#[fg=colour246]"
   echo "${colour}${ssid} ${rate}Mbps ${sigLev}"
