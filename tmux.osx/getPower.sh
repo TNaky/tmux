@@ -8,7 +8,7 @@ POWER_TYPE=`echo ${POWER} | head -n 1 | awk "match(\\$0,/\\047.*\\047/) {print s
 
 if [ "${POWER_TYPE}" = "${BATTERY}" ]; then
   # 電池残量を取得
-  POWER=`echo "${POWER}" | tail -n 1 | awk '{print $2}' | sed 's/;//' | sed 's/%//';`
+  POWER=`echo ${POWER} | head -n 1 | awk "match(\\$0,/[0-9]+\\045/) {print substr(\\$0,RSTART, RLENGTH)}" | sed -e 's/\([^0-9]\)//g'`
   # 電池残量によって色を設定
   COLOUR=""
   if [ "$POWER" -gt 60 ]; then
@@ -21,5 +21,8 @@ if [ "${POWER_TYPE}" = "${BATTERY}" ]; then
     # 赤
     COLOUR="#[fg=colour1]"
   fi
-  echo "⚡ ${COLOUR}${POWER}%"
+  echo "🔋 ${COLOUR}${POWER}%"
+else
+  POWER=`echo ${POWER} | head -n 1 | awk "match(\\$0,/[0-9]+\\045/) {print substr(\\$0,RSTART, RLENGTH)}"`
+  echo "⚡ ${COLOUR}${POWER}"
 fi
