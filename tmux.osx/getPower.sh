@@ -5,10 +5,10 @@ ACPOWER="'AC Power'"
 # 電池残量を取得
 POWER=`/usr/bin/pmset -g ps`
 POWER_TYPE=`echo ${POWER} | head -n 1 | awk "match(\\$0,/\\047.*\\047/) {print substr(\\$0,RSTART,RLENGTH)}"`
+# 電池残量を取得
+POWER=`echo ${POWER} | head -n 1 | awk "match(\\$0,/[0-9]+\\045/) {print substr(\\$0,RSTART, RLENGTH)}" | sed -e 's/\([^0-9]\)//g'`
 
 if [ "${POWER_TYPE}" = "${BATTERY}" ]; then
-  # 電池残量を取得
-  POWER=`echo ${POWER} | head -n 1 | awk "match(\\$0,/[0-9]+\\045/) {print substr(\\$0,RSTART, RLENGTH)}" | sed -e 's/\([^0-9]\)//g'`
   # 電池残量によって色を設定
   COLOUR=""
   if [ "$POWER" -gt 60 ]; then
@@ -23,6 +23,5 @@ if [ "${POWER_TYPE}" = "${BATTERY}" ]; then
   fi
   echo "🔋 ${COLOUR}${POWER}%"
 else
-  POWER=`echo ${POWER} | head -n 1 | awk "match(\\$0,/[0-9]+\\045/) {print substr(\\$0,RSTART, RLENGTH)}"`
-  echo "⚡ ${COLOUR}${POWER}"
+  echo "⚡ ${COLOUR}${POWER}%"
 fi
