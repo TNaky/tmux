@@ -2,9 +2,13 @@
 
 tmux conf files
 
+## tmux setup
+
 ```
 bash install.sh
 ```
+
+or
 
 ```
 git clone https://github.com/TNaky/tmux.git $HOME/.tmux
