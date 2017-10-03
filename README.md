@@ -5,7 +5,7 @@ tmux conf files
 ## tmux setup
 
 ```
-bash install.sh
+sh -c "$(curl -fsSL https://raw.github.com/TNaky/tmux/master/install.sh)"
 ```
 
 or
