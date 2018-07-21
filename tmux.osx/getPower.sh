@@ -23,5 +23,5 @@ if [ "${POWER_TYPE}" = "${BATTERY}" ]; then
   fi
   echo "🔋 ${COLOUR}${POWER_LVL}%"
 elif [ `expr $(echo "${POWER_STAT}" | wc -l)` -eq 2 ]; then
-  echo "⚡ ${COLOUR}${POWER_LVL}%"
+  echo "🔌 ${COLOUR}${POWER_LVL}%"
 fi
